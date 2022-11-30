@@ -1,19 +1,19 @@
-import "../styles/globals.css";
+import '../styles/globals.css'
 import {
-	wagmiClient,
-	chains,
-	WagmiConfig,
-	RainbowKitProvider,
-} from "./utils/walletSetup";
+  wagmiClient,
+  chains,
+  WagmiConfig,
+  RainbowKitProvider,
+} from '../utils/walletSetup'
 
 function MyApp({ Component, pageProps }) {
-	return (
-		<WagmiConfig client={wagmiClient}>
-			<RainbowKitProvider chains={chains}>
-				<Component {...pageProps} />
-			</RainbowKitProvider>
-		</WagmiConfig>
-	);
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
+        <Component {...pageProps} />
+      </RainbowKitProvider>
+    </WagmiConfig>
+  )
 }
 
-export default MyApp;
+export default MyApp
