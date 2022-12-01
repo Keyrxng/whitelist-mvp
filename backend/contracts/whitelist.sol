@@ -2,7 +2,7 @@ pragma solidity ^0.8.0;
 
 contract whitelist {
     uint8 public maxWLAddrs;
-    uint8 public addrsWLed;
+    uint8 public numAddressesWhitelisted;
 
     address owner;
 
@@ -20,9 +20,9 @@ contract whitelist {
 
     function addToWhitelist(address _who) public {
         if (wlAddrs[_who]) revert AlreadyInitialized();
-        if (addrsWLed == maxWLAddrs) revert MaxWhitelisted();
+        if (numAddressesWhitelisted == maxWLAddrs) revert MaxWhitelisted();
         wlAddrs[_who] = true;
-        addrsWLed += 1;
+        numAddressesWhitelisted += 1;
     }
 
     function isWhitelisted(address _who) public view returns (bool) {
@@ -31,7 +31,7 @@ contract whitelist {
     }
 
     function getTotalWhitelisted() public view returns (uint8) {
-        return addrsWLed;
+        return numAddressesWhitelisted;
     }
 
     function getMaxWhitelistable() public view returns (uint8) {
@@ -42,12 +42,12 @@ contract whitelist {
         if (!wlAddrs[_who]) revert NotInitialized();
         if (msg.sender != _who) revert AuthenticationError();
         wlAddrs[_who] = false;
-        addrsWLed -= 1;
+        numAddressesWhitelisted -= 1;
     }
 
     function removeFromWhitelistOP(address _who) public {
         if (msg.sender != owner) revert AuthenticationError();
         wlAddrs[_who] = false;
-        addrsWLed -= 1;
+        numAddressesWhitelisted -= 1;
     }
 }

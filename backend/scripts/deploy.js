@@ -1,12 +1,17 @@
 const { ethers } = require('hardhat')
+const { WHITELIST_CONTRACT_ADDRESS, METADATA_URL } = require('../constants')
 
 async function main() {
-  const whitelistContract = await ethers.getContractFactory('whitelist')
-  const deployedWhitelist = await whitelistContract.deploy(10)
+  const whitelistContract = WHITELIST_CONTRACT_ADDRESS
+  // URL from where we can extract the metadata for a Crypto Dev NFT
+  const metadataURL = METADATA_URL
 
-  await deployedWhitelist.deployed()
+  const devsContract = await ethers.getContractFactory('CryptoDevs')
+  const deployedDevs = await devsContract.deploy(metadataURL, whitelistContract)
 
-  console.log(`Deployed to ${deployedWhitelist.address}`)
+  await deployedDevs.deployed()
+
+  console.log(`Deployed to ${deployedDevs.address}`)
 }
 
 main()

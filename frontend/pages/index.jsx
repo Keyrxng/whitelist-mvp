@@ -5,17 +5,13 @@ import Section from '../layout/section'
 import AddWhitelist from '../components/AddWhitelist'
 import VerifyWhitelist from '../components/VerifyWhitelist'
 import NumWhitelisted from '../components/NumWhitelisted'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
   return (
     <div>
       <header className={styles.header_container}>
-        <nav className={styles.navbar}>
-          <a href="https://alchemy.com/?a=create-web3-dapp" target={'_blank'}>
-            <img className={styles.alchemy_logo} src="/alchemy_logo.svg"></img>
-          </a>
-          <ConnectButton></ConnectButton>
-        </nav>
+        <Navbar />
         <div className={styles.logo_container}>
           <h1 className={styles.logo}>📝</h1>
           <h1>Address Whitelisting</h1>
